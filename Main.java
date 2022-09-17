@@ -9,12 +9,10 @@ class Main
 	public static void deleteContact(List<Contact> people)
 	{
 		Scanner scan = new Scanner (System.in);	
-		int deleteKey;
-		System.out.println("Choose a contact to delete (type 1 for the first person, 2 for the second person, etc)");
+		
+		System.out.println("Choose a contact to delete (type 1 for the first person in the list, 2 for the second person, etc)");
 
-		deleteKey = Integer.parseInt(scan.nextLine());
-
-		people.remove(deleteKey - 1);
+		people.remove(Integer.parseInt(scan.nextLine()) - 1);
 
 	}
 	//////////method to sort by phone number
@@ -93,49 +91,48 @@ class Main
 	////////method to add a contact
 	public static void addContact(List<Contact> people)
 	{
-		String firstName;
-		String lastName;
-		long phoneNumber;
-		String email;
-		int age;
+		String newFirstName;
+		String newLastName;
+		long newPhoneNumber;
+		String newEmail;
+		int newAge;
 		Scanner scan = new Scanner (System.in);
 
 		System.out.println("Enter first name");
-		firstName = scan.nextLine();	
+		newFirstName = scan.nextLine();	
 		System.out.println("Enter last name");
-		lastName = scan.nextLine();	
+		newLastName = scan.nextLine();	
 		System.out.println("Enter phone number");
-		phoneNumber = Long.parseLong(scan.nextLine());	
+		newPhoneNumber = Long.parseLong(scan.nextLine());	
 		System.out.println("Enter email");
-		email = scan.nextLine();	
+		newEmail = scan.nextLine();	
 		System.out.println("Enter age");
-		age = Integer.parseInt(scan.nextLine());	
+		newAge = Integer.parseInt(scan.nextLine());	
 
-		people.add(new Contact(firstName, lastName, phoneNumber, email, age));
+		people.add(new Contact(newFirstName, newLastName, newPhoneNumber, newEmail, newAge));
 		
 
 	}
 	/////////method to scan the input file
 	public static void scanFile(List<Contact> people) throws IOException
 	{
-		String firstName;
-		String lastName;
-		long phoneNumber;
-		String email;
-		int age;
+		String newFirstName;
+		String newLastName;
+		long newPhoneNumber;
+		String newEmail;
+		int newAge;
 		File myFile = new File("ContactInfo.txt");
-		Scanner scan = new Scanner (System.in);
 		Scanner myReader = new Scanner(myFile);
 
 		while (myReader.hasNextLine())
 		{
-			firstName = myReader.nextLine();
-			lastName = myReader.nextLine();
-			phoneNumber = Long.parseLong(myReader.nextLine());
-			email = myReader.nextLine();
-			age = Integer.parseInt(myReader.nextLine());
+			newFirstName = myReader.nextLine();
+			newLastName = myReader.nextLine();
+			newPhoneNumber = Long.parseLong(myReader.nextLine());
+			newEmail = myReader.nextLine();
+			newAge = Integer.parseInt(myReader.nextLine());
 			
-			people.add(new Contact(firstName, lastName, phoneNumber, email, age));
+			people.add(new Contact(newFirstName, newLastName, newPhoneNumber, newEmail, newAge));
 		}
 		myReader.close();	
 	}
@@ -250,12 +247,15 @@ class Main
 	////////main method
 	public static void main(String[] args) throws IOException
 	{
+		///////declaring variables
     List<Contact> people = new ArrayList<Contact>();
 		int choice = 1;
 		String key;
 
+		/////scanning in contacts file and printing contacts
 		scanFile(people);
-
+		printContacts(people);
+		///////main loop
 		while (choice != 0)
 		{			
 			printMenu();
@@ -302,6 +302,7 @@ class Main
 			else
 				break;
 		}
+		///////printing to the updated file at the end
 		printToFile(people);
   }
 }

@@ -8,13 +8,13 @@ public class Contact
 	private int age;
 
 	///////constructor
-	public Contact (String firstName, String lastName, long phoneNumber, String email,int age)
+	public Contact (String newFirstName, String newLastName, long newPhoneNumber, String newEmail,int newAge)
 	{
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.age = age;
+		this.firstName = newFirstName;
+		this.lastName = newLastName;
+		this.phoneNumber = newPhoneNumber;
+		this.email = newEmail;
+		this.age = newAge;
 	}
 
 	///////empty constructor for temp variables
@@ -49,7 +49,7 @@ public class Contact
 		return email;
 	}
 	
-	/////////method to get a contact output as a string
+	/////////method to get a string that is a contact output
 	public String getContactOutput()
 	{
 		return "First Name: \u001B[34m" + firstName + "\u001B[0m\nLast Name: \u001B[34m" + lastName + "\u001B[0m\nPhone Number: \u001B[33m" + phoneNumber + "\u001B[0m\nEmail: " + email + "\nAge: " + age;
